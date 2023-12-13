@@ -1,1 +1,0 @@
-Aqui va el frontend de la aplicacion de inventarios.

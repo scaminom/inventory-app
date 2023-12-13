@@ -1,1 +1,0 @@
-Aqui va la api de la aplicacion de inventarios.
