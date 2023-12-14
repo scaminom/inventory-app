@@ -1,6 +1,7 @@
 class ComputerSerializer < Panko::Serializer
   attributes  :id,
-              :name
+              :name,
+              :description
 
   has_many :peripherals, each_serializer: PeripheralSerializer
 end
