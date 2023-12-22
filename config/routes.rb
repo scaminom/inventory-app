@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       resources :peripherals
       resources :computers
       resources :custodians
+      resources :assets
     end
   end
 

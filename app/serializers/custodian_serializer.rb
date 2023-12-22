@@ -5,4 +5,5 @@ class CustodianSerializer < Panko::Serializer
               :degree
 
   has_one :supervisor, serializer: UserSerializer, only: %i[username email]
+  has_many :assets,    serializer: AssetSerializer, only: %i[name stock laboratory computer]
 end
