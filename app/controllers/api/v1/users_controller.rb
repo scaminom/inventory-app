@@ -1,7 +1,7 @@
 module Api
   module V1
     class UsersController < ApplicationController
-      before_action :set_user, only: %i[show destroy]
+      before_action :set_user, only: %i[show destroy update]
 
       def index
         users = User.all
@@ -16,7 +16,6 @@ module Api
       end
 
       def create
-        puts params.inspect
         @user = User.new(user_params)
 
         if @user.save

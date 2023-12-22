@@ -10,9 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_22_204117) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_22_210527) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "assets", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.boolean "stock"
+    t.integer "amount"
+    t.bigint "computer_id"
+    t.bigint "custodian_id", null: false
+    t.bigint "laboratory_id", null: false
+    t.index ["computer_id"], name: "index_assets_on_computer_id"
+    t.index ["custodian_id"], name: "index_assets_on_custodian_id"
+    t.index ["laboratory_id"], name: "index_assets_on_laboratory_id"
+  end
 
   create_table "computers", force: :cascade do |t|
     t.string "name"
@@ -58,6 +71,9 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_22_204117) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "assets", "computers"
+  add_foreign_key "assets", "custodians"
+  add_foreign_key "assets", "laboratories"
   add_foreign_key "custodians", "users", column: "supervisor_id"
   add_foreign_key "peripherals", "computers"
 end
