@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       resources :laboratories
       resources :peripherals
       resources :computers
+      resources :custodians
     end
   end
 
