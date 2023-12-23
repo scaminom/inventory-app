@@ -1,8 +1,9 @@
 class Suggestion < ApplicationRecord
-    belongs_to :asset
+    has_many :activities
     WHITELISTED_ATTRIBUTES = %i[
      title
      description
      asset_id
     ].freeze
+    belongs_to :asset
 end
