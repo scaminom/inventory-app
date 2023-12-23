@@ -1,4 +1,7 @@
 class SuggestionSerializer < Panko::Serializer
- attributes :title,
+ attributes :id,
+            :title,
             :description
+
+    has_many :activities, each_serializer: ActivitySerializer
 end 
