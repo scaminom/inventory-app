@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :activities
+  
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     registrations: 'users/registrations'
@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       resources :custodians
       resources :assets
       resources :suggestions
+      resources :activities
     end
   end
 
