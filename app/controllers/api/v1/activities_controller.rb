@@ -1,53 +1,74 @@
 module Api
   module V1
     class ActivitiesController < ApplicationController
-    before_action :set_activity, only: %i[ show update destroy ]
+      before_action :set_activity, only: %i[ show update destroy ]
 
-    # GET /activities
-    def index
-      @activities = Activity.all
+    
+      def index
+        activities = Activity.all
 
-     render json: @activities
-    end
+        render json: Panko::ArraySerializer.new(
+          activities, each_serializer: ActivitySerializer
+        ).to_json
+      end
 
-    # GET /activities/1
-    def show
-      render json: @activity
-    end
+  
+      def show
+        render json: { activity: activity_serializer(@activity) }
+      end
 
-    # POST /activities
-    def create
-      @activity = Activity.new(activity_params)
+    
+      def create
+        @activity = Activity.new(activity_params)
 
-      if @activity.save
-        render json: @activity, status: :created, location: @activity
-      else
-        render json: @activity.errors, status: :unprocessable_entity
+        if @activity.save
+          render json: { activity: activity_serializer(@activity) }, status: :created, location: @activity
+        else
+          render json: { errors: @activity.errors.full_messages }, status: :unprocessable_entity
+        end
+      end
+
+    
+      def update
+        if @activity.update(activity_params)
+         render json: { activity: activity_serializer(@activity) }
+        else
+          render json: { errors: @activity.errors.full_messages }, status: :unprocessable_entity
+        end
+      end
+
+  
+      def destroy
+        if @activity.destroy
+          render json: { message: 'Activity deleted successfully' }
+        else
+          render json: { errors: @activity.errors.full_messages }, status: :unprocessable_entity
+        end
+      end
+
+      private
+
+     def set_activity
+        @activity = Activity.find(params[:id])
+      end
+
+   
+      def activity_params
+        params.require(:activity).permit(:description, :status, :suggestion_id)
+      end
+
+      def activity_serializer(activity)
+        Rails.cache.fetch([cache_key(activity), I18n.locale]) do
+          ActivitySerializer.new.serialize(activity)
+        rescue StandardError => e
+          Rails.logger.error "Error serializing activity #{activity.id}: #{e.message}"
+          {}.as_json
+        end
+      end
+
+      def cache_key(activity)
+        "activities/#{activity.id}"
       end
     end
-
-    # PATCH/PUT /activities/1
-    def update
-    if @activity.update(activity_params)
-      render json: @activity
-    else
-      render json: @activity.errors, status: :unprocessable_entity
-    end
   end
-
-  # DELETE /activities/1
-  def destroy
-    @activity.destroy!
-  end
-
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_activity
-      @activity = Activity.find(params[:id])
-    end
-
-    # Only allow a list of trusted parameters through.
-    def activity_params
-      params.require(:activity).permit(:description, :status, :suggestion_id)
-    end
-end
+end 
