@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :suggestions
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     registrations: 'users/registrations'
@@ -12,6 +11,7 @@ Rails.application.routes.draw do
       resources :computers
       resources :custodians
       resources :assets
+      resources :suggestions
     end
   end
 
