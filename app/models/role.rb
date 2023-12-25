@@ -1,4 +1,8 @@
 class Role < ApplicationRecord
+  WHITELISTED_ATTRIBUTES = %i[
+    name
+  ].freeze
+
   has_many :assignments
   has_many :users, through: :assignments
 

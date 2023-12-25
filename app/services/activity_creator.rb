@@ -6,15 +6,15 @@ class ActivityCreator
 
   def call
     change_suggestion_status
-    @message = 'Sugerencia atendida'
-    Activity.new(suggestion_id: @suggestion_id, message: @message, actor_type: 'User', actor_id: @current_user.id)
+    Activity.new(suggestion_id: @suggestion_id, message: 'Sugerencia atendida', actor_type: 'User',
+                 actor_id: @current_user.id)
   end
 
   private
 
   def change_suggestion_status
     suggestion = Suggestion.find(@suggestion_id)
-    return unless suggestion.status == 'colsed'
+    raise 'La sugerencia ya fue atendida' if suggestion.status == 'closed'
 
     suggestion.status = 'closed'
     suggestion.save

@@ -16,12 +16,11 @@ module Api
       end
 
       def create
-        @activity = Activity.new(activity_params)
-
-        if @activity.save
-          render json: { activity: activity_serializer(@activity) }, status: :accepted
+        activity = ActivityCreator.new(current_user, activity_params[:suggestion_id]).call
+        if activity.save
+          render json: { activity: activity_serializer(activity) }, status: :accepted
         else
-          render json: { errors: @activity.errors.full_messages }, status: :unprocessable_entity
+          render json: { errors: activity.errors.full_messages }, status: :unprocessable_entity
         end
       end
 
