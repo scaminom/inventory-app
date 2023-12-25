@@ -9,16 +9,17 @@ class User < ApplicationRecord
     username
     email
     password
-    role
     first_name
     last_name
   ].freeze
 
-  enum role: {
-    'admin': 1,
-    'technician': 2,
-    'student': 3
-  }
+  has_many :custodians, class_name: 'User', foreign_key: 'manager_id'
+  has_many :assignments
+  has_many :roles, through: :assignments
+  has_many :activities, as: :actor
+  has_many :suggestions, as: :suggestor
+  has_many :assets, as: :custodian
+  belongs_to :manager, class_name: 'User', optional: true
 
   def jwt_payload
     super
