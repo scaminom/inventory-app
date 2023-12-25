@@ -13,7 +13,6 @@ Rails.application.routes.draw do
       resources :assignments
       resources :suggestions
       resources :activities
-      post '/create_activity', to: 'technician#create_activity'
     end
   end
 
