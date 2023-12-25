@@ -3,8 +3,6 @@ class CreateLaboratories < ActiveRecord::Migration[7.1]
     create_table :laboratories do |t|
       t.string :name
       t.string :description
-
-      t.timestamps
     end
   end
 end

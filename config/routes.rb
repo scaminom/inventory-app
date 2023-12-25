@@ -9,8 +9,11 @@ Rails.application.routes.draw do
       resources :laboratories
       resources :peripherals
       resources :computers
-      resources :custodians
       resources :assets
+      resources :assignments
+      resources :suggestions
+      resources :activities
+      post '/create_activity', to: 'technician#create_activity'
     end
   end
 

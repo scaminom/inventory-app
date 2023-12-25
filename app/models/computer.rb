@@ -1,5 +1,6 @@
 class Computer < ApplicationRecord
   has_many :peripherals
+  has_many :assets
 
   WHITELISTED_ATTRIBUTES = %i[
     name
