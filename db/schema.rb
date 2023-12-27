@@ -54,6 +54,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_23_173707) do
   create_table "laboratories", force: :cascade do |t|
     t.string "name"
     t.string "description"
+    t.integer "building_number"
   end
 
   create_table "peripherals", force: :cascade do |t|
