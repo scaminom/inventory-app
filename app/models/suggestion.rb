@@ -5,7 +5,8 @@ class Suggestion < ApplicationRecord
     asset_id
     suggestor_type
     suggestor_id
-  ]
+    status
+  ].freeze
 
   belongs_to :suggestor, polymorphic: true
   belongs_to :asset
