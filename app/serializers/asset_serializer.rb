@@ -8,4 +8,5 @@ class AssetSerializer < Panko::Serializer
   has_one :laboratory,  serializer: LaboratorySerializer,  only: %i[name description]
   has_one :computer,    serializer: ComputerSerializer,    only: %i[name]
   has_one :custodian,   serializer: UserSerializer,        only: %i[username first_name last_name]
+  has_many :peripherals, serializer: PeripheralSerializer, only: %i[id name]
 end
