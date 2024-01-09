@@ -16,7 +16,7 @@ module Api
       end
 
       def create
-        activity = ActivityCreator.new(current_user, activity_params[:suggestion_id]).call
+        activity = ActivityCreator.new(current_user, extracted_activity_params).call
         if activity.save
           render json: { activity: activity_serializer(activity) }, status: :accepted
         else
@@ -41,6 +41,13 @@ module Api
       end
 
       private
+
+      def extracted_activity_params
+        {
+          suggestion_id: activity_params[:suggestion_id],
+          message: activity_params[:message]
+        }
+      end
 
       def set_activity
         @activity = Activity.find(params[:id])
