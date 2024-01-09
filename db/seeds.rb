@@ -52,18 +52,46 @@ roles = [
 
 roles.each { |role| Role.create!(role) }
 
+user_roles = [
+  {
+    user_id: 1,
+    role_id: 1
+  },
+  {
+    user_id: 2,
+    role_id: 2
+  },
+  {
+    user_id: 3,
+    role_id: 3
+  },
+  {
+    user_id: 4,
+    role_id: 3
+  },
+  {
+    user_id: 5,
+    role_id: 3
+  }
+]
+
+user_roles.each { |assignment| Assignment.create!(assignment) }
+
 laboratories = [
   {
     name: 'Laboratorio de redes',
-    description: 'Laboratorio en el piso 2'
+    description: 'Laboratorio en el piso 2',
+    building_number: 1
   },
   {
     name: 'Laboratorio de redes 2',
-    description: 'Laboratorio en el piso 3'
+    description: 'Laboratorio en el piso 3',
+    building_number: 2
   },
   {
     name: 'Laboratorio de mecanica',
-    description: 'Laboratorio en el piso 2'
+    description: 'Laboratorio en el piso 2',
+    building_number: 1
   }
 ]
 
