@@ -5,7 +5,8 @@ class Computer < ApplicationRecord
   WHITELISTED_ATTRIBUTES = %i[
     name
     description
+    code
   ].freeze
 
-  validates_presence_of :name, :description
+  validates_presence_of :name, :description, :code
 end
