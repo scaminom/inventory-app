@@ -33,7 +33,14 @@ usuarios = [
     email: 'usuario5@example.com',
     first_name: 'Pedro',
     last_name: 'Sánchez'
-  }
+  },
+  {
+    username: 'anonimo',
+    password: 'anonimo',
+    email: 'anonimo@example.com',
+    first_name: 'Usuario',
+    last_name: 'Anónimo'
+  },
 ]
 
 usuarios.each { |user| User.create!(user) }
@@ -47,6 +54,12 @@ roles = [
   },
   {
     name: 'STUDENT'
+  },
+  {
+    name: 'ADMIN'
+  },
+  {
+    name: 'GUESS'
   }
 ]
 
@@ -71,7 +84,11 @@ user_roles = [
   },
   {
     user_id: 5,
-    role_id: 3
+    role_id: 4
+  },
+  {
+    user_id: 6,
+    role_id: 5
   }
 ]
 
@@ -96,40 +113,3 @@ laboratories = [
 ]
 
 laboratories.each { |laboratory| Laboratory.create!(laboratory) }
-
-assets = [
-  {
-    name: 'High Precision Microscope',
-    description: 'Advanced optical microscope with enhanced precision for detailed analysis.',
-    stock: true,
-    amount: 2,
-    custodian: User.find(2),
-    laboratory_id: 1
-  },
-  {
-    name: 'Chemical Analyzer',
-    description: 'Automated analyzer for chemical composition testing, suitable for diverse samples.',
-    stock: false,
-    amount: 1,
-    custodian: User.find(2),
-    laboratory_id: 1
-  },
-  {
-    name: 'Portable Spectrometer',
-    description: 'Handheld device for on-site spectral analysis, equipped with Bluetooth connectivity.',
-    stock: true,
-    amount: 5,
-    custodian: User.find(3),
-    laboratory_id: 2
-  },
-  {
-    name: 'Centrifuge Machine',
-    description: 'High-speed centrifuge for molecular and cellular studies, with variable speed settings.',
-    stock: false,
-    amount: 3,
-    custodian: User.find(4),
-    laboratory_id: 3
-  }
-]
-
-assets.each { |asset| Asset.create!(asset) }
