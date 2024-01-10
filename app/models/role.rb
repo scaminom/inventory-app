@@ -10,7 +10,8 @@ class Role < ApplicationRecord
     'GUESS': 0,
     'TECHNICIAN': 1,
     'STUDENT': 2,
-    'CUSTODIAN': 3
+    'CUSTODIAN': 3,
+    'ADMIN': 4
   }.freeze
 
   validates :name, inclusion: { in: names.keys }
