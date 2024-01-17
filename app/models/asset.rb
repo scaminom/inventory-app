@@ -13,6 +13,6 @@ class Asset < ApplicationRecord
 
   belongs_to :computer, optional: true
   belongs_to :custodian, polymorphic: true
-  belongs_to :laboratory
+  belongs_to :laboratory, optional: true
   has_many   :peripherals
 end

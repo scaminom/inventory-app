@@ -1,4 +1,6 @@
 class Suggestion < ApplicationRecord
+  has_many :activities
+  
   WHITELISTED_ATTRIBUTES = %i[
     title
     description

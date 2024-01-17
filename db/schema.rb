@@ -31,7 +31,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_09_171543) do
     t.bigint "computer_id"
     t.string "custodian_type"
     t.bigint "custodian_id"
-    t.bigint "laboratory_id", null: false
+    t.bigint "laboratory_id"
     t.index ["computer_id"], name: "index_assets_on_computer_id"
     t.index ["custodian_type", "custodian_id"], name: "index_assets_on_custodian"
     t.index ["laboratory_id"], name: "index_assets_on_laboratory_id"
