@@ -7,7 +7,7 @@ class CreateAssets < ActiveRecord::Migration[7.1]
       t.integer :amount
       t.references :computer, null: true, foreign_key: true
       t.references :custodian, polymorphic: true, index: true
-      t.references :laboratory, null: false, foreign_key: true
+      t.references :laboratory, null: true, foreign_key: true
     end
   end
 end
